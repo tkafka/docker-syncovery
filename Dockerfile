@@ -3,7 +3,7 @@ FROM centos:latest
 ENV SYNCOVERY_HOME=/config
 ENV SETUP_TEMP=/tmp/syncovery.tar.gz
 
-ADD ./docker-entrypoint.sh /docker/entrypoint.sh
+ADD ./docker-entrypoint.sh /podman/entrypoint.sh
 
 RUN yum -y install wget openssl-devel
 RUN mkdir /syncovery && \
@@ -18,4 +18,4 @@ EXPOSE 8943
 
 VOLUME "/config" 
 
-ENTRYPOINT [ "/docker/entrypoint.sh" ]
+ENTRYPOINT [ "/podman/entrypoint.sh" ]
