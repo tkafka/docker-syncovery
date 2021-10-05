@@ -1,7 +1,7 @@
 # Introduction
 This is the unofficial Syncovery docker image, it's been compiled and prepared @ https://hub.docker.com/r/hlince/syncovery
 
-To upgrade syncovery, update the syncovery version in `Dockerfile` script.
+To upgrade syncovery, update the syncovery version in `Dockerfile` script with a filename from [syncovery linux page](https://www.syncovery.com/syncovery9linux/) - look for `64-bit Intel (with Web GUI)` in `.tar.gz` section.
 
 # Usage
 After accessing the interface the the user name is `default` and the password is `pass`.
