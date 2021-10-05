@@ -1,6 +1,8 @@
 # Introduction
 This is the unofficial Syncovery docker image, it's been compiled and prepared @ https://hub.docker.com/r/hlince/syncovery
 
+To upgrade syncovery, update the syncovery version in `Dockerfile` script.
+
 # Usage
 After accessing the interface the the user name is `default` and the password is `pass`.
 
