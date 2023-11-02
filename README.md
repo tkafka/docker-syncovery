@@ -3,12 +3,12 @@ This is the unofficial Syncovery docker image, it's been compiled and prepared @
 
 # Upgrade the image
 
-1. Update the syncovery version in `Dockerfile` script with a filename from [syncovery linux page](https://www.syncovery.com/syncovery9linux/) - look for `64-bit Intel (with Web GUI)` in `.tar.gz` section.
-2. Build ang tag with syncovery version: `docker build --platform linux/amd64 -t tomaskafka/syncovery:intel64-9.49i .`
+1. Update the syncovery version in `Dockerfile` script with a filename from [syncovery linux page](https://www.syncovery.com/syncovery10linux/) - look for `64-bit Intel (with Web GUI)` in `.tar.gz` section.
+2. Build and tag with syncovery version: `docker build --platform linux/amd64 -t tomaskafka/syncovery:x86_64-10.7.1 .`
 3. Tag the version also as latest:
-  `docker tag tomaskafka/syncovery:intel64-9.49i tomaskafka/syncovery:latest`
+  `docker tag tomaskafka/syncovery:x86_64-10.7.1 tomaskafka/syncovery:latest`
 4. And push:
-  `docker push tomaskafka/syncovery:intel64-9.49i`
+  `docker push tomaskafka/syncovery:x86_64-10.7.1`
   `docker push tomaskafka/syncovery:latest`
 5. Go check on [tomaskafka/syncovery](https://hub.docker.com/repository/docker/tomaskafka/syncovery)
 
