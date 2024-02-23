@@ -10,7 +10,7 @@ RUN pushd /etc/yum.repos.d/ && sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repo
 RUN yum update -y
 
 RUN yum -y install wget openssl-devel
-RUN mkdir /syncovery && wget -O "$SETUP_TEMP" 'https://www.syncovery.com/release/SyncoveryCL-x86_64-10.7.1-Web.tar.gz' && tar -xvf "$SETUP_TEMP" --directory /syncovery && rm -f "$SETUP_TEMP" && chmod +x /syncovery/SyncoveryCL && chmod +x /podman/entrypoint.sh
+RUN mkdir /syncovery && wget -O "$SETUP_TEMP" 'https://www.syncovery.com/release/SyncoveryCL-x86_64-10.11.11-Web.tar.gz' && tar -xvf "$SETUP_TEMP" --directory /syncovery && rm -f "$SETUP_TEMP" && chmod +x /syncovery/SyncoveryCL && chmod +x /podman/entrypoint.sh
 
 EXPOSE 8999
 EXPOSE 8943
