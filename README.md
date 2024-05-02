@@ -5,16 +5,20 @@ This is the unofficial Syncovery docker image, it's been compiled and prepared @
 # Upgrade the image
 
 1. Update the syncovery version in `Dockerfile` script with a filename from [syncovery linux page](https://www.syncovery.com/syncovery10linux/) - look for `64-bit Intel (with Web GUI)` in `.tar.gz` section.
-2. Build and tag with syncovery version: `docker build --platform linux/amd64 -t tomaskafka/syncovery:x86_64-10.11.11 .`
+2. Build and tag with syncovery version: `docker build --platform linux/amd64 -t tomaskafka/syncovery:x86_64-10.14.3 .`
 3. Tag the version also as latest:
-   `docker tag tomaskafka/syncovery:x86_64-10.11.11 tomaskafka/syncovery:10.11.11-x86_64`
-   `docker tag tomaskafka/syncovery:x86_64-10.11.11 tomaskafka/syncovery:10-x86_64`
-   `docker tag tomaskafka/syncovery:x86_64-10.11.11 tomaskafka/syncovery:latest-x86_64`
+   ```
+   docker tag tomaskafka/syncovery:x86_64-10.14.3 tomaskafka/syncovery:10.14.3-x86_64
+   docker tag tomaskafka/syncovery:x86_64-10.14.3 tomaskafka/syncovery:10-x86_64
+   docker tag tomaskafka/syncovery:x86_64-10.14.3 tomaskafka/syncovery:latest-x86_64
+   ```
 4. And push:
 
-   `docker push tomaskafka/syncovery:10.11.11-x86_64`
-   `docker push tomaskafka/syncovery:10-x86_64`
-   `docker push tomaskafka/syncovery:latest-x86_64`
+   ```
+   docker push tomaskafka/syncovery:10.14.3-x86_64
+   docker push tomaskafka/syncovery:10-x86_64
+   docker push tomaskafka/syncovery:latest-x86_64
+   ```
 
    Or
 
