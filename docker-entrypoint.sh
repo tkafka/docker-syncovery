@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 if [ ! -f /config/.Syncovery/Syncovery.cfg ]; then
     echo "Setting configuration setting for webserver"
