@@ -22,7 +22,9 @@ This is the unofficial Syncovery docker image, it's been compiled and prepared @
 
    Or
 
-   `docker push --all-tags tomaskafka/syncovery`
+   ```
+   docker push --all-tags tomaskafka/syncovery
+   ```
 
 5. Go check on [tomaskafka/syncovery](https://hub.docker.com/repository/docker/tomaskafka/syncovery)
 
