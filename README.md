@@ -2,22 +2,29 @@
 
 This is the unofficial Syncovery docker image, it's been compiled and prepared @ https://hub.docker.com/r/hlince/syncovery
 
+This fork builds Syncovery 11.16.4 with the Web GUI for `linux/amd64`, using `debian:trixie-slim` (Debian 13) as its base. A separate download stage keeps download tools out of the final image; only CA certificates, OpenSSL, and zlib runtime packages are installed.
+
 # Upgrade the image
 
-1. Update the syncovery version in `Dockerfile` script with a filename from [syncovery linux page](https://www.syncovery.com/syncovery10linux/) - look for `64-bit Intel (with Web GUI)` in `.tar.gz` section.
-2. Build and tag with syncovery version: `docker build --platform linux/amd64 -t tomaskafka/syncovery:x86_64-10.14.3 .`
-3. Tag the version also as latest:
+1. Update the syncovery version in `Dockerfile` script with a filename from [syncovery linux page](https://www.syncovery.com/syncovery11linux/) - look for `64-bit Intel (with Web GUI)` in `.tar.gz` section.
+2. Build and tag with syncovery version: `docker build --platform linux/amd64 -t tomaskafka/syncovery:11.16.4-x86_64 .`
+3. Add the major-version, latest, and plain aliases (all currently `linux/amd64`):
    ```
-   docker tag tomaskafka/syncovery:x86_64-10.14.3 tomaskafka/syncovery:10.14.3-x86_64
-   docker tag tomaskafka/syncovery:x86_64-10.14.3 tomaskafka/syncovery:10-x86_64
-   docker tag tomaskafka/syncovery:x86_64-10.14.3 tomaskafka/syncovery:latest-x86_64
+   docker tag tomaskafka/syncovery:11.16.4-x86_64 tomaskafka/syncovery:11-x86_64
+   docker tag tomaskafka/syncovery:11.16.4-x86_64 tomaskafka/syncovery:latest-x86_64
+   docker tag tomaskafka/syncovery:11.16.4-x86_64 tomaskafka/syncovery:11.16.4
+   docker tag tomaskafka/syncovery:11.16.4-x86_64 tomaskafka/syncovery:11
+   docker tag tomaskafka/syncovery:11.16.4-x86_64 tomaskafka/syncovery:latest
    ```
 4. And push:
 
    ```
-   docker push tomaskafka/syncovery:10.14.3-x86_64
-   docker push tomaskafka/syncovery:10-x86_64
+   docker push tomaskafka/syncovery:11.16.4-x86_64
+   docker push tomaskafka/syncovery:11-x86_64
    docker push tomaskafka/syncovery:latest-x86_64
+   docker push tomaskafka/syncovery:11.16.4
+   docker push tomaskafka/syncovery:11
+   docker push tomaskafka/syncovery:latest
    ```
 
    Or
@@ -25,6 +32,7 @@ This is the unofficial Syncovery docker image, it's been compiled and prepared @
    `docker push --all-tags tomaskafka/syncovery`
 
 5. Go check on [tomaskafka/syncovery](https://hub.docker.com/repository/docker/tomaskafka/syncovery)
+6. On the NAS, stop the existing container and back up its `/config` directory. Update the image tag to `tomaskafka/syncovery:11.16.4-x86_64`, pull it, and recreate the container with the existing volume mounts and ports. Check the version, license, and profiles in the Web GUI before resuming scheduled syncs.
 
 # Usage
 
@@ -40,7 +48,7 @@ services:
   syncovery:
     cpu_shares: 256
     restart: unless-stopped
-    image: hlince/syncovery
+    image: tomaskafka/syncovery:11.16.4-x86_64
     volumes:
     - /mnt:/mnt
     - /boot:/boot

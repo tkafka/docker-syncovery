@@ -1,16 +1,25 @@
-FROM centos:latest
+FROM debian:trixie-slim AS download
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends ca-certificates curl \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir /syncovery \
+    && curl -fsSL -o /tmp/syncovery.tar.gz \
+        'https://www.syncovery.com/release/SyncoveryCL-x86_64-11.16.4-Web.tar.gz' \
+    && tar -xzf /tmp/syncovery.tar.gz --directory /syncovery \
+    && chmod +x /syncovery/SyncoveryCL
+
+FROM debian:trixie-slim
 
 ENV SYNCOVERY_HOME=/config
-ENV SETUP_TEMP=/tmp/syncovery.tar.gz
 
-ADD ./docker-entrypoint.sh /podman/entrypoint.sh
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends ca-certificates libssl3t64 zlib1g \
+    && rm -rf /var/lib/apt/lists/*
 
-# https://techglimpse.com/failed-metadata-repo-appstream-centos-8/
-RUN pushd /etc/yum.repos.d/ && sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-* && sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-* && popd
-RUN yum update -y
-
-RUN yum -y install wget openssl-devel
-RUN mkdir /syncovery && wget -O "$SETUP_TEMP" 'https://www.syncovery.com/release/SyncoveryCL-x86_64-10.14.3-Web.tar.gz' && tar -xvf "$SETUP_TEMP" --directory /syncovery && rm -f "$SETUP_TEMP" && chmod +x /syncovery/SyncoveryCL && chmod +x /podman/entrypoint.sh
+COPY --from=download /syncovery /syncovery
+COPY --chmod=755 ./docker-entrypoint.sh /podman/entrypoint.sh
 
 EXPOSE 8999
 EXPOSE 8943
