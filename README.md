@@ -2,7 +2,7 @@
 
 This is the unofficial Syncovery docker image, it's been compiled and prepared @ https://hub.docker.com/r/hlince/syncovery
 
-This fork builds Syncovery 11.16.4 with the Web GUI for `linux/amd64`, using `debian:trixie-slim` (Debian 13) as its base. A separate download stage keeps download tools out of the final image; only CA certificates, OpenSSL, and zlib runtime packages are installed.
+This fork builds Syncovery 11.16.4 with the Web GUI for `linux/amd64`, using `debian:trixie-slim` (Debian 13) as its base. A separate download stage keeps download tools out of the final image; only CA certificates, OpenSSL, SQLite, and zlib runtime packages are installed.
 
 # Upgrade the image
 

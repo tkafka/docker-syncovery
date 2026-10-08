@@ -15,15 +15,15 @@ FROM debian:trixie-slim
 ENV SYNCOVERY_HOME=/config
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends ca-certificates libssl3t64 zlib1g \
+    && apt-get install -y --no-install-recommends ca-certificates libssl3t64 libsqlite3-0 zlib1g \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=download /syncovery /syncovery
-COPY --chmod=755 ./docker-entrypoint.sh /podman/entrypoint.sh
+COPY --chmod=755 ./docker-entrypoint.sh /entrypoint.sh
 
 EXPOSE 8999
 EXPOSE 8943
 
 VOLUME "/config"
 
-ENTRYPOINT [ "/podman/entrypoint.sh" ]
+ENTRYPOINT [ "/entrypoint.sh" ]
